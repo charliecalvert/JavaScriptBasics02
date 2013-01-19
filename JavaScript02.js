@@ -14,6 +14,7 @@ var MyObject = (function () {
     
     MyObject.prototype.showCode = function() {
         $("#info").html("This data was sent by jQuery");  
+        $("body").css( { "backgroundColor": "lightblue" } );
     };
 	
 	return MyObject;
