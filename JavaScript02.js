@@ -1,20 +1,25 @@
 /**
- * @author Charlie
+ * @author Charlie Calvert
+ * Edit in part on Cloud 9
  */
 
 var MyObject = (function () {
 	'use strict';
 	
-	function MyObject() {};
+	function MyObject() {}
 	
 	MyObject.prototype.run = function() {
 		alert("Running");
 	};
+    
+    MyObject.prototype.showCode = function() {
+        $("#info").html("This data was sent by jQuery");  
+    };
 	
 	return MyObject;
 })();
 
-$(document).ready(function(){
+$(document).ready(function() {
 	var myObject = new MyObject();
-	myObject.run();
+	myObject.showCode();
 });
