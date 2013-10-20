@@ -5,6 +5,7 @@
 
 var MyObject = (function () {
 	'use strict';
+    
 	
 	function MyObject() {}
 	
@@ -15,6 +16,7 @@ var MyObject = (function () {
     MyObject.prototype.showCode = function() {
         $("#info").html("This data was sent by jQuery");  
         $("body").css( { "backgroundColor": "lightblue" } );
+        $("something").html("This thing.")
     };
 	
 	return MyObject;
