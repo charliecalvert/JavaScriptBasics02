@@ -2,26 +2,38 @@
  * @author Charlie Calvert
  */
 
-var ElfWorld = angular.module('elfworld', ['elfgame']);
+var ElfWorld = angular.module('elfworld', ['elfgame'])
+.factory('gameEventService', function($rootScope) {
+    return {
+        message: "",
+        
+        towerBroadcast: function(message) {
+            this.message = message;
+            this.broadcastMessage('towerBroadcast');
+        },
+        
+        broadcastMessage: function(broadcastType) {
+            $rootScope.$broadcast(broadcastType);            
+        }
+    };    
+});
 
 /*.controller('starter', function() {
     game.start();
 }); */
 
-function ElfPlayer($scope, elfgame) {
-    var mapGrid = {
-        width:  24,
-        height: 16,
-        tile: {
-            width:  32,
-            height: 32
-        }
-    };
+function ElfPlayer($scope, gameEventService) {    
     
     $scope.name = "ElfPlayer";
-    $scope.eventNote = "none";    
-    
-    // $scope.game = Game;
-    elfgame.start(mapGrid);
-    // Game.start();
+    $scope.eventNote = "no messages";    
+  
+    // This event is fired from inside crafty when a tower is found.  
+    // We need to call $apply because we are calling from Crafty, not from Angular.
+    $scope.$on('towerBroadcast', function() {        
+        $scope.$apply(function() { $scope.eventNote = gameEventService.message; });
+        console.log(gameEventService.message);
+    });    
 } 
+
+// ElfPlayer.$inject = ['$scope', 'gameEventService'];        
+        

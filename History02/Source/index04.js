@@ -1,4 +1,20 @@
 var ElfGame = angular.module('elfgame', [])
+.controller('GameBoard', function($scope, gameEventService, elfgame) {
+    var mapGrid = {
+        width:  24,
+        height: 16,
+        tile: {
+            width:  32,
+            height: 32
+        }
+    };
+    
+     elfgame.start(mapGrid);
+     
+     elfgame.reportEvent = function(message) {
+        gameEventService.towerBroadcast(message);
+    };        
+})
 .factory('elfgame', function() { 
    // Game.elfWorld = elfworld;   
    return {
@@ -132,7 +148,7 @@ Crafty.c('PlayerCharacter', {
 
 	// Respond to this player visiting a village
 	visitVillage: function(data) {
-	    // Crafty.game.reportEvent("Found Tower");
+	    Crafty.game.reportEvent("Found Tower");
 		villlage = data[0].obj;
 		villlage.visit();
 	}
