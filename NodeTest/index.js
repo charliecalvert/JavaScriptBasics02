@@ -1,4 +1,5 @@
-console.log("Node test");var http = require('http');
+console.log("Node test");
+var http = require('http');
 var url = require('url');
 var port = process.env.PORT || 1337;
 var fs = require('fs');
