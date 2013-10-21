@@ -6,4 +6,5 @@ http.createServer(function (request, response) {
   response.end('It works!\n');
 }).listen(port);
 
-console.log('Server running at: ' + port);
+console.log('Server running on: ' + port);
+
