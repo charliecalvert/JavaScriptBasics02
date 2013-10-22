@@ -23,24 +23,29 @@ function first(request, response) {
 		var css = fs.readFileSync(__dirname + path);
 		response.writeHead(200, {'Content-Type': 'text/css'});
 		response.write(css);
+		response.end();
 	} else if (path === '/favicon.png') {
 		fs.readFile(__dirname + path, "binary", function(err, file) {
+			console.log("Favicon detected");
 			if(err) {
+				console.log("Error reading binary file");
 				response.writeHeader(500, {"Content-Type": "text/plain"});
 				response.write(err + "\n");
 			}
 			else{
-				console.log("Favicon detected");
+				console.log("Favicon loaded");
 				response.writeHeader(200, {"Content-Type": "image/png"});
 				response.write(file, "binary");
+				response.end();
 			}
 		});
 	} else {
 		var html = fs.readFileSync(__dirname + '/Test01.html');
 		response.writeHead(200, {'Content-Type': 'text/html'});
 		response.write(html);
+		response.end();
 	}
-	response.end();
+	
 }
 
 http.createServer(first).listen(port);
