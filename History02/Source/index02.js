@@ -236,7 +236,7 @@ Crafty.scene('Victory', function() {
 Crafty.scene('Loading', function(){
 	// Load our sprite map image
 	Crafty.load(['Assets/Elf/cscGarden01-32X32.gif',
-	    'Assets/Elf/terrainAtlas.gif', 
+		'Assets/Elf/terrainAtlas.gif', 
 		'Assets/Elf/BoyWalk.png', 
 		'http://desolate-caverns-4829.herokuapp.com/assets/door_knock_3x.mp3', 
 		'http://desolate-caverns-4829.herokuapp.com/assets/door_knock_3x.ogg', 
